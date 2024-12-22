@@ -49,6 +49,7 @@
                 <pathelement location="resources/jaf-1_1_1/jaf-1.1.1.jar"/>
                 <pathelement location="resources/javamail1_4_7/javamail-1.4.7.jar"/>
                 <pathelement location="resources/jcalendar-1.4/lib/jcalendar-1.4.jar"/>
+                <pathelement location="resources/RES/itext/itextpdf-5.5.9.jar"/>
                 <pathelement location="resources/mysql-connector-j-8.3.0/mysql-connector-j-8.3.0.jar"/>
             </classpath>
             <compilerarg value="--release" />
@@ -65,6 +66,7 @@
         <fileset dir="libs/netbeans" includes="*.jar"/>
         <fileset dir="resources/jaf-1_1_1" includes="*.jar"/>
         <fileset dir="resources/javamail1_4_7" includes="*.jar"/>
+        <fileset dir="resources/RES/itext/itextpdf-5.5.9" includes="*.jar"/>
         <fileset dir="resources/jcalendar-1.4/lib/jcalendar-1.4" includes="*.jar"/>
         <fileset dir="resources/mysql-connector-j-8.3.0" includes="*.jar"/>
     </path>
