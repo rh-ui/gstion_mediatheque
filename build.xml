@@ -1,76 +1,30 @@
-<project name="GMF_" default="compile" basedir=".">
-    <description>Builds, tests, and runs the project GMF_.</description>
+<project name="gstion_mediatheque" basedir="." default="compile">
 
-    <!-- Définition des propriétés pour les répertoires -->
-    <property name="build" value="build"/>
-    <property name="classes" value="${build}/classes"/>
-
-    <!-- Créer les répertoires build/classes si nécessaire -->
-    <target name="prepare">
-        <!-- Afficher le répertoire de travail actuel pour le débogage -->
-        <echo message="Répertoire de travail courant : ${basedir}"/>
-
-        <!-- Supprimer le fichier classes s'il existe -->
-        <delete file="${classes}"/>
-        <echo message="Fichier classes supprimé s'il existait"/>
-
-        <!-- Créer les répertoires build et build/classes si nécessaire -->
-        <mkdir dir="${classes}"/>
-        <echo message="Création du répertoire ${classes}"/>
-    </target>
-
-    <!-- Vérifier l'existence du répertoire avant la compilation -->
-    <target name="check-directory" depends="prepare">
-        <echo message="Vérification du répertoire ${classes} avant compilation"/>
-
-        <!-- Vérification de l'existence du répertoire -->
-        <available file="${classes}" property="classes.exists"/>
-
-        <!-- Vérification de la condition et affichage des messages -->
-        <condition property="classes.exists.message">
-            <isset property="classes.exists"/>
-        </condition>
-        <condition property="classes.notexists.message">
-            <not>
-                <isset property="classes.exists"/>
-            </not>
-        </condition>
-
-        <!-- Affichage conditionnel des messages -->
-        <echo message="${classes.exists.message}"/>
-        <echo message="${classes.notexists.message}"/>
-    </target>
-
-    <!-- Compilation du code source avec les JAR nécessaires -->
-    <target name="compile" depends="check-directory">
-        <echo message="Compilation des fichiers source..."/>
-        <javac srcdir="src" destdir="${classes}">
-            <classpath>
-                <pathelement location="resources/jaf-1_1_1/jaf-1.1.1.jar"/>
-                <pathelement location="resources/javamail1_4_7/javamail-1.4.7.jar"/>
-                <pathelement location="resources/jcalendar-1.4/lib/jcalendar-1.4.jar"/>
-                <pathelement location="resources/RES/itext/itextpdf-5.5.9.jar"/>
-                <pathelement location="resourcesmysql-connector-j-8.3.0/mysql-connector-j-8.3.0/mysql-connector-j-8.3.0.jar"/>
-            </classpath>
-            <compilerarg value="--release" />
-            <compilerarg value="11" />
-        </javac>
-    </target>
-
-    <!-- Exemple d'une cible de nettoyage si besoin -->
-    <target name="clean">
-        <delete dir="${build}"/>
-    </target>
-
+    <!-- Définition du classpath pour les bibliothèques -->
     <path id="classpath">
-        <fileset dir="libs/netbeans" includes="*.jar"/>
-        <fileset dir="resources/jaf-1_1_1" includes="*.jar"/>
-        <fileset dir="resources/javamail1_4_7" includes="*.jar"/>
-        <fileset dir="resources/RES/itext/itextpdf-5.5.9" includes="*.jar"/>
-        <fileset dir="resources/jcalendar-1.4/lib/jcalendar-1.4" includes="*.jar"/>
-        <fileset dir="resources/mysql-connector-j-8.3.0/mysql-connector-j-8.3.0/mysql-connector-j-8.3.0.jar" includes="*.jar"/>
+         <fileset dir="resources/RES" includes="itextpdf-5.5.9.jar"/>
+        <!-- Inclure les fichiers JAR dans le répertoire resources/jaf-1_1_1 -->
+        <fileset dir="resources/jaf-1_1_1" includes="jaf-1.1.1.jar"/>
+        <!-- Inclure les fichiers JAR dans le répertoire resources/javamail1_4_7 -->
+        <fileset dir="resources/javamail1_4_7" includes="javamail-1.4.7.jar"/>
+        <!-- Inclure les fichiers JAR dans le répertoire resources/jcalendar-1.4 -->
+        <fileset dir="resources/jcalendar-1.4" includes="jcalendar-1.4.jar"/>
+        <!-- Inclure les fichiers JAR dans le répertoire resources/mysql-connector-j-8.3.0 -->
+        <fileset dir="resources/mysql-connector-j-8.3.0" includes="mysql-connector-j-8.3.0.jar"/>
     </path>
 
+    <!-- Phase de préparation : créer le répertoire pour les classes compilées -->
+    <target name="prepare">
+        <echo message="Répertoire de travail courant : ${basedir}"/>
+        <delete dir="build/classes"/>
+        <mkdir dir="build/classes"/>
+        <echo message="Création du répertoire build/classes"/>
+    </target>
+
+    <!-- Phase de compilation : compiler les fichiers source Java -->
+    <target name="compile" depends="prepare">
+        <echo message="Compilation des fichiers source..."/>
+        <javac srcdir="src" destdir="build/classes" classpathref="classpath"/>
+    </target>
+
 </project>
-
-
