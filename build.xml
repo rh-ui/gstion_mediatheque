@@ -11,40 +11,10 @@
         <javac srcdir="src" destdir="build/classes">
             <!-- Ajouter le classpath des JAR nécessaires -->
             <classpath>
-                <!-- Chemins vers vos JAR dans ressources -->
-                <pathelement location="<project name="GMF_" default="compile" basedir=".">
-    <description>Builds, tests, and runs the project GMF_.</description>
-    
-    <!-- Crée le répertoire build/classes si nécessaire -->
-    <target name="prepare">
-        <mkdir dir="build/classes"/>
-    </target>
-
-    <!-- Compilation du code source avec les JAR nécessaires -->
-    <target name="compile" depends="prepare">
-        <javac srcdir="src" destdir="build/classes">
-            <!-- Ajouter le classpath des JAR nécessaires -->
-            <classpath>
-                <!-- Chemins vers vos JAR dans ressources -->
                 <pathelement location="resources/jaf-1_1_1/jaf-1.1.1.jar"/>
                 <pathelement location="resources/javamail1_4_7/javamail-1.4.7.jar"/>
                 <pathelement location="resources/jcalendar-1.4/jcalendar-1.4.jar"/>
                 <pathelement location="resources/mysql-connector-j-8.3.0/mysql-connector-j-8.3.0.jar"/>
-            </classpath>
-            <compilerarg value="--release" />
-            <compilerarg value="11" />
-        </javac>
-    </target>
-
-    <!-- Exemple d'une cible de nettoyage si besoin -->
-    <target name="clean">
-        <delete dir="build"/>
-    </target>
-</project>
-/jaf-1_1_1/jaf-1.1.1.jar"/>
-                <pathelement location="ressources/javamail1_4_7/javamail-1.4.7.jar"/>
-                <pathelement location="ressources/jcalendar-1.4/jcalendar-1.4.jar"/>
-                <pathelement location="ressources/mysql-connector-j-8.3.0/mysql-connector-j-8.3.0.jar"/>
             </classpath>
             <compilerarg value="--release" />
             <compilerarg value="11" />
