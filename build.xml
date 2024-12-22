@@ -17,15 +17,14 @@
         <!-- Créer les répertoires build et build/classes si nécessaire -->
         <mkdir dir="${classes}"/>
         <echo message="Création du répertoire ${classes}"/>
-
-        <!-- Vérification explicite de l'existence du répertoire -->
-        <available file="${classes}" message="Répertoire ${classes} existe !"/>
     </target>
 
     <!-- Vérifier l'existence du répertoire avant la compilation -->
     <target name="check-directory" depends="prepare">
         <echo message="Vérification du répertoire ${classes} avant compilation"/>
-        <available file="${classes}"/>
+        <!-- Vérification de l'existence du répertoire -->
+        <available file="${classes}" />
+        <echo message="Répertoire ${classes} existe, prêt pour la compilation"/>
     </target>
 
     <!-- Compilation du code source avec les JAR nécessaires -->
