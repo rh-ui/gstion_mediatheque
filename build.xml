@@ -3,24 +3,25 @@
     
     <!-- Définition de la variable build -->
     <property name="build" value="build"/>
-
+    <property name="classes" value="${build}/classes"/>
+    
     <!-- Crée les répertoires build/classes si nécessaire -->
     <target name="prepare">
         <!-- Créer les répertoires build et build/classes si nécessaire -->
-        <mkdir dir="${build}/classes"/>
+        <mkdir dir="${classes}"/>
         <!-- Afficher un message pour vérifier la création des répertoires -->
-        <echo message="Répertoire de destination : ${build}/classes"/>
+        <echo message="Répertoire de destination : ${classes}"/>
     </target>
 
     <!-- Vérifier l'existence du répertoire avant la compilation -->
     <target name="check-directory" depends="prepare">
-        <echo message="Vérification de l'existence du répertoire build/classes"/>
-        <available file="${build}/classes"/>
+        <echo message="Vérification de l'existence du répertoire ${classes}"/>
+        <available file="${classes}" />
     </target>
 
     <!-- Compilation du code source avec les JAR nécessaires -->
     <target name="compile" depends="check-directory">
-        <javac srcdir="src" destdir="${build}/classes">
+        <javac srcdir="src" destdir="${classes}">
             <!-- Ajouter le classpath des JAR nécessaires -->
             <classpath>
                 <pathelement location="resources/jaf-1_1_1/jaf-1.1.1.jar"/>
@@ -50,6 +51,5 @@
     </path>
 
     <!-- Compilation finale avec le classpath configuré -->
-    <javac srcdir="src" destdir="${build}/classes" classpathref="classpath"/>
+    <javac srcdir="src" destdir="${classes}" classpathref="classpath"/>
 </project>
-
