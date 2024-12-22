@@ -63,9 +63,9 @@
 
     <path id="classpath">
         <fileset dir="libs/netbeans" includes="*.jar"/>
-        <fileset dir="resources/jaf-1_1_1" includes="*.jar"/>
-        <fileset dir="resources/javamail1_4_7" includes="*.jar"/>
-        <fileset dir="resources/jcalendar-1.4" includes="*.jar"/>
+        <fileset dir="resources/jaf-1_1_1/jaf-1.1.1" includes="*.jar"/>
+        <fileset dir="resources/javamail1_4_7/javamail-1.4.7/lib" includes="*.jar"/>
+        <fileset dir="resources/lib/jcalendar-1.4" includes="*.jar"/>
         <fileset dir="resources/RES/itext/itextpdf-5.5.9.jar" includes="*.jar"/>
         <fileset dir="resources/mysql-connector-j-8.3.0" includes="*.jar"/>
     </path>
