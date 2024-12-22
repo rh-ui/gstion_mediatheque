@@ -25,5 +25,17 @@
     <target name="clean">
         <delete dir="build"/>
     </target>
+    <path id="classpath">
+        <!-- Ajouter les JARs de NetBeans -->
+        <fileset dir="libs/netbeans" includes="*.jar"/>
+        
+        <!-- Ajouter vos autres bibliothèques -->
+        <fileset dir="resources/jaf-1_1_1" includes="*.jar"/>
+        <fileset dir="resources/javamail1_4_7" includes="*.jar"/>
+        <fileset dir="resources/jcalendar-1.4" includes="*.jar"/>
+        <fileset dir="resources/mysql-connector-j-8.3.0" includes="*.jar"/>
+    </path>
+    
+    <javac srcdir="${src}" destdir="${build}" classpathref="classpath"/>
 </project>
 
