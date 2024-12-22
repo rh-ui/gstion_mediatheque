@@ -20,10 +20,9 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '11'
-        distribution: 'adoptopenjdk'  # Utilisation de adoptopenjdk
+        distribution: 'adoptium'  # Utilisez 'adoptium' au lieu de 'adoptopenjdk'
         architecture: x64
         check-latest: false
 
     - name: Build with Ant
       run: ant -f build.xml
-
