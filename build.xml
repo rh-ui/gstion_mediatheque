@@ -8,10 +8,18 @@
     <target name="prepare">
         <!-- Créer les répertoires build et build/classes si nécessaire -->
         <mkdir dir="${build}/classes"/>
+        <!-- Afficher un message pour vérifier la création des répertoires -->
+        <echo message="Répertoire de destination : ${build}/classes"/>
+    </target>
+
+    <!-- Vérifier l'existence du répertoire avant la compilation -->
+    <target name="check-directory" depends="prepare">
+        <echo message="Vérification de l'existence du répertoire build/classes"/>
+        <available file="${build}/classes"/>
     </target>
 
     <!-- Compilation du code source avec les JAR nécessaires -->
-    <target name="compile" depends="prepare">
+    <target name="compile" depends="check-directory">
         <javac srcdir="src" destdir="${build}/classes">
             <!-- Ajouter le classpath des JAR nécessaires -->
             <classpath>
@@ -44,3 +52,4 @@
     <!-- Compilation finale avec le classpath configuré -->
     <javac srcdir="src" destdir="${build}/classes" classpathref="classpath"/>
 </project>
+
