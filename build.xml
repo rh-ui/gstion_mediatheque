@@ -26,13 +26,14 @@
         <!-- Vérification de l'existence du répertoire -->
         <available file="${classes}" property="classes.exists"/>
 
-        <!-- Utilisation d'une condition pour afficher un message en fonction de l'existence du répertoire -->
-        <condition property="classes.exists.message" value="Répertoire ${classes} existe, prêt pour la compilation">
+        <!-- Vérification de la condition et affichage des messages -->
+        <condition property="classes.exists.message">
             <isset property="classes.exists"/>
         </condition>
-        <condition property="classes.notexists.message" value="Répertoire ${classes} n'existe pas">
-            <isset property="classes.exists" />
-            <not/>
+        <condition property="classes.notexists.message">
+            <not>
+                <isset property="classes.exists"/>
+            </not>
         </condition>
 
         <!-- Affichage conditionnel des messages -->
@@ -69,4 +70,3 @@
     </path>
 
 </project>
-
