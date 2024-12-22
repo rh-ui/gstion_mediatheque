@@ -1,14 +1,17 @@
 <project name="GMF_" default="compile" basedir=".">
     <description>Builds, tests, and runs the project GMF_.</description>
     
+    <!-- Définition de la variable build -->
+    <property name="build" value="build"/>
+
     <!-- Crée le répertoire build/classes si nécessaire -->
     <target name="prepare">
-        <mkdir dir="build/classes"/>
+        <mkdir dir="${build}/classes"/>
     </target>
 
     <!-- Compilation du code source avec les JAR nécessaires -->
     <target name="compile" depends="prepare">
-        <javac srcdir="src" destdir="build/classes">
+        <javac srcdir="src" destdir="${build}/classes">
             <!-- Ajouter le classpath des JAR nécessaires -->
             <classpath>
                 <pathelement location="resources/jaf-1_1_1/jaf-1.1.1.jar"/>
@@ -23,8 +26,9 @@
 
     <!-- Exemple d'une cible de nettoyage si besoin -->
     <target name="clean">
-        <delete dir="build"/>
+        <delete dir="${build}"/>
     </target>
+    
     <path id="classpath">
         <!-- Ajouter les JARs de NetBeans -->
         <fileset dir="libs/netbeans" includes="*.jar"/>
@@ -35,6 +39,8 @@
         <fileset dir="resources/jcalendar-1.4" includes="*.jar"/>
         <fileset dir="resources/mysql-connector-j-8.3.0" includes="*.jar"/>
     </path>
-    
-    <javac srcdir="${src}" destdir="${build}" classpathref="classpath"/>
+
+    <!-- Compilation finale avec le classpath configuré -->
+    <javac srcdir="src" destdir="${build}/classes" classpathref="classpath"/>
 </project>
+
