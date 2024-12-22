@@ -2,6 +2,8 @@
 
     <!-- Définition du classpath pour les bibliothèques -->
     <path id="classpath">
+        
+        <!-- Inclure les fichiers JAR dans le répertoire resources/RES -->
          <fileset dir="resources/RES" includes="itextpdf-5.5.9.jar"/>
         <!-- Inclure les fichiers JAR dans le répertoire resources/jaf-1_1_1 -->
         <fileset dir="resources/jaf-1_1_1" includes="jaf-1.1.1.jar"/>
