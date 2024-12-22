@@ -1,28 +1,33 @@
 <project name="GMF_" default="compile" basedir=".">
     <description>Builds, tests, and runs the project GMF_.</description>
-    
-    <!-- Définition de la variable build -->
+
+    <!-- Définition des propriétés pour les répertoires -->
     <property name="build" value="build"/>
     <property name="classes" value="${build}/classes"/>
-    
-    <!-- Crée les répertoires build/classes si nécessaire -->
+
+    <!-- Créer les répertoires build/classes si nécessaire -->
     <target name="prepare">
+        <!-- Afficher le répertoire de travail actuel pour le débogage -->
+        <echo message="Répertoire de travail courant : ${basedir}"/>
+
         <!-- Créer les répertoires build et build/classes si nécessaire -->
         <mkdir dir="${classes}"/>
-        <!-- Afficher un message pour vérifier la création des répertoires -->
-        <echo message="Répertoire de destination : ${classes}"/>
+        <echo message="Création du répertoire ${classes}"/>
+        
+        <!-- Vérification explicite de l'existence du répertoire -->
+        <available file="${classes}" message="Répertoire ${classes} existe !"/>
     </target>
 
     <!-- Vérifier l'existence du répertoire avant la compilation -->
     <target name="check-directory" depends="prepare">
-        <echo message="Vérification de l'existence du répertoire ${classes}"/>
-        <available file="${classes}" />
+        <echo message="Vérification du répertoire ${classes} avant compilation"/>
+        <available file="${classes}"/>
     </target>
 
     <!-- Compilation du code source avec les JAR nécessaires -->
     <target name="compile" depends="check-directory">
+        <echo message="Compilation des fichiers source..."/>
         <javac srcdir="src" destdir="${classes}">
-            <!-- Ajouter le classpath des JAR nécessaires -->
             <classpath>
                 <pathelement location="resources/jaf-1_1_1/jaf-1.1.1.jar"/>
                 <pathelement location="resources/javamail1_4_7/javamail-1.4.7.jar"/>
@@ -38,18 +43,14 @@
     <target name="clean">
         <delete dir="${build}"/>
     </target>
-    
+
     <path id="classpath">
-        <!-- Ajouter les JARs de NetBeans -->
         <fileset dir="libs/netbeans" includes="*.jar"/>
-        
-        <!-- Ajouter vos autres bibliothèques -->
         <fileset dir="resources/jaf-1_1_1" includes="*.jar"/>
         <fileset dir="resources/javamail1_4_7" includes="*.jar"/>
         <fileset dir="resources/jcalendar-1.4" includes="*.jar"/>
         <fileset dir="resources/mysql-connector-j-8.3.0" includes="*.jar"/>
     </path>
 
-    <!-- Compilation finale avec le classpath configuré -->
-    <javac srcdir="src" destdir="${classes}" classpathref="classpath"/>
 </project>
+
