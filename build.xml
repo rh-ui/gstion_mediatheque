@@ -26,9 +26,18 @@
         <!-- Vérification de l'existence du répertoire -->
         <available file="${classes}" property="classes.exists"/>
 
-        <!-- Afficher un message en fonction de l'existence du répertoire -->
-        <echo message="Répertoire ${classes} existe, prêt pour la compilation" if="classes.exists"/>
-        <echo message="Répertoire ${classes} n'existe pas" unless="classes.exists"/>
+        <!-- Utilisation d'une condition pour afficher un message en fonction de l'existence du répertoire -->
+        <condition property="classes.exists.message" value="Répertoire ${classes} existe, prêt pour la compilation">
+            <isset property="classes.exists"/>
+        </condition>
+        <condition property="classes.notexists.message" value="Répertoire ${classes} n'existe pas">
+            <isset property="classes.exists" />
+            <not/>
+        </condition>
+
+        <!-- Affichage conditionnel des messages -->
+        <echo message="${classes.exists.message}"/>
+        <echo message="${classes.notexists.message}"/>
     </target>
 
     <!-- Compilation du code source avec les JAR nécessaires -->
@@ -60,3 +69,4 @@
     </path>
 
 </project>
+
