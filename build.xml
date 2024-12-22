@@ -22,9 +22,13 @@
     <!-- Vérifier l'existence du répertoire avant la compilation -->
     <target name="check-directory" depends="prepare">
         <echo message="Vérification du répertoire ${classes} avant compilation"/>
+
         <!-- Vérification de l'existence du répertoire -->
-        <available file="${classes}" />
-        <echo message="Répertoire ${classes} existe, prêt pour la compilation"/>
+        <available file="${classes}" property="classes.exists"/>
+
+        <!-- Afficher un message en fonction de l'existence du répertoire -->
+        <echo message="Répertoire ${classes} existe, prêt pour la compilation" if="classes.exists"/>
+        <echo message="Répertoire ${classes} n'existe pas" unless="classes.exists"/>
     </target>
 
     <!-- Compilation du code source avec les JAR nécessaires -->
