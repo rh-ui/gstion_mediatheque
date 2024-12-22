@@ -1,73 +1,63 @@
-<project name="GMF_" default="compile" basedir=".">
-    <description>Builds, tests, and runs the project GMF_.</description>
-
-    <!-- Définition des propriétés pour les répertoires -->
-    <property name="build" value="build"/>
-    <property name="classes" value="${build}/classes"/>
-
-    <!-- Créer les répertoires build/classes si nécessaire -->
-    <target name="prepare">
-        <!-- Afficher le répertoire de travail actuel pour le débogage -->
-        <echo message="Répertoire de travail courant : ${basedir}"/>
-
-        <!-- Supprimer le fichier classes s'il existe -->
-        <delete file="${classes}"/>
-        <echo message="Fichier classes supprimé s'il existait"/>
-
-        <!-- Créer les répertoires build et build/classes si nécessaire -->
-        <mkdir dir="${classes}"/>
-        <echo message="Création du répertoire ${classes}"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="VotreProjet" basedir="." default="compile">
+    
+    <!-- Définir la tâche 'init' pour configurer les variables de projet -->
+    <target name="init">
+        <property name="lib.dir" location="lib"/>
+        <property name="build.dir" location="build"/>
+        <property name="src.dir" location="src"/>
+        <property name="dist.dir" location="dist"/>
     </target>
 
-    <!-- Vérifier l'existence du répertoire avant la compilation -->
+    <!-- Préparer les répertoires nécessaires pour la compilation -->
+    <target name="prepare" depends="init">
+        <mkdir dir="${build.dir}/classes"/>
+    </target>
+
+    <!-- Vérification des répertoires avant compilation -->
     <target name="check-directory" depends="prepare">
-        <echo message="Vérification du répertoire ${classes} avant compilation"/>
-
-        <!-- Vérification de l'existence du répertoire -->
-        <available file="${classes}" property="classes.exists"/>
-
-        <!-- Vérification de la condition et affichage des messages -->
-        <condition property="classes.exists.message">
-            <isset property="classes.exists"/>
-        </condition>
-        <condition property="classes.notexists.message">
-            <not>
-                <isset property="classes.exists"/>
-            </not>
-        </condition>
-
-        <!-- Affichage conditionnel des messages -->
-        <echo message="${classes.exists.message}"/>
-        <echo message="${classes.notexists.message}"/>
+        <echo message="Vérification des répertoires avant compilation"/>
+        <echo message="Répertoire de travail: ${build.dir}/classes"/>
     </target>
 
-    <!-- Compilation du code source avec les JAR nécessaires -->
+    <!-- Compilation des fichiers sources -->
     <target name="compile" depends="check-directory">
         <echo message="Compilation des fichiers source..."/>
-        <javac srcdir="src" destdir="${classes}">
-            <classpath>
-                <pathelement location="resources/jaf-1_1_1/jaf-1.1.1.jar"/>
-                <pathelement location="resources/javamail1_4_7/javamail-1.4.7.jar"/>
-                <pathelement location="resources/jcalendar-1.4/jcalendar-1.4.jar"/>
-                <pathelement location="resources/mysql-connector-j-8.3.0/mysql-connector-j-8.3.0.jar"/>
-            </classpath>
-            <compilerarg value="--release" />
-            <compilerarg value="11" />
+
+        <!-- Définir le classpath pour la compilation -->
+        <path id="compile.classpath">
+            <fileset dir="${lib.dir}">
+                <include name="jcalendar-1.4/jcalendar-1.4.jar"/>
+                <include name="jgoodies-common-1.2.0.jar"/>
+                <include name="jgoodies-looks-2.4.1.jar"/>
+                <include name="junit-4.6.jar"/>
+                <include name="itext/itextpdf-5.5.9.jar"/>
+                <include name="jaf-1_1_1/jaf-1.1.1/activation.jar"/>
+                <include name="javax.activation-api-1.2.0.jar"/>
+            </fileset>
+        </path>
+
+        <!-- Tâche de compilation -->
+        <javac srcdir="${src.dir}" destdir="${build.dir}/classes" classpathref="compile.classpath">
+            <compilerarg value="-source"/>
+            <compilerarg value="1.8"/>
+            <compilerarg value="-target"/>
+            <compilerarg value="1.8"/>
         </javac>
     </target>
 
-    <!-- Exemple d'une cible de nettoyage si besoin -->
-    <target name="clean">
-        <delete dir="${build}"/>
+    <!-- Créer un fichier JAR -->
+    <target name="jar" depends="compile">
+        <echo message="Création du fichier JAR"/>
+        <jar destfile="${dist.dir}/VotreProjet.jar" basedir="${build.dir}/classes">
+            <manifest>
+                <attribute name="Main-Class" value="votre.package.MainClass"/>
+            </manifest>
+        </jar>
     </target>
 
-    <path id="classpath">
-        <fileset dir="libs/netbeans" includes="*.jar"/>
-        <fileset dir="resources/jaf-1_1_1/jaf-1.1.1" includes="*.jar"/>
-        <fileset dir="resources/javamail1_4_7/javamail-1.4.7/lib" includes="*.jar"/>
-        <fileset dir="resources/lib/jcalendar-1.4" includes="*.jar"/>
-        <fileset dir="resources/RES/itext/itextpdf-5.5.9.jar" includes="*.jar"/>
-        <fileset dir="resources/mysql-connector-j-8.3.0" includes="*.jar"/>
-    </path>
+    <!-- Tâche par défaut pour la compilation -->
+    <target name="default" depends="compile"/>
 
 </project>
+
