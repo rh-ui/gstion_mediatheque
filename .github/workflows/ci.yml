@@ -29,4 +29,8 @@ jobs:
 
     - name: Build with Ant
       run: ant -f build.xml
+    - name: Compile the project
+      run: |
+          mkdir -p bin
+          javac -cp "lib/AbsoluteLayout.jar" -d bin src/**/*.java
 
