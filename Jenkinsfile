@@ -9,14 +9,15 @@ pipeline {
             }
         }
 
-        stage('Build') {
+       stage('Build') {
             steps {
                 script {
                     // Compiler avec Ant (assurez-vous que 'Ant' est installé dans Jenkins)
-                    sh 'ant build'
+                    bat 'ant build'
                 }
             }
         }
+
 
         stage('Test') {
             steps {
