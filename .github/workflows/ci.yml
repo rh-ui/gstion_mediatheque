@@ -12,7 +12,6 @@ jobs:
   build:
     runs-on: ubuntu-22.04
 
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -21,7 +20,7 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '11'
-        distribution: 'adoptium'  # Mise à jour avec la bonne distribution
+        distribution: 'openjdk'  # Essayer openjdk comme alternative
         architecture: x64
 
     - name: Build with Ant
