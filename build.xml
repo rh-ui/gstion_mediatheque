@@ -50,7 +50,7 @@
                 <pathelement location="resources/javamail1_4_7/javamail-1.4.7.jar"/>
                 <pathelement location="resources/jcalendar-1.4/lib/jcalendar-1.4.jar"/>
                 <pathelement location="resources/RES/itext/itextpdf-5.5.9.jar"/>
-                <pathelement location="resources/mysql-connector-j-8.3.0/mysql-connector-j-8.3.0.jar"/>
+                <pathelement location="resourcesmysql-connector-j-8.3.0/mysql-connector-j-8.3.0/mysql-connector-j-8.3.0.jar"/>
             </classpath>
             <compilerarg value="--release" />
             <compilerarg value="11" />
@@ -68,7 +68,7 @@
         <fileset dir="resources/javamail1_4_7" includes="*.jar"/>
         <fileset dir="resources/RES/itext/itextpdf-5.5.9" includes="*.jar"/>
         <fileset dir="resources/jcalendar-1.4/lib/jcalendar-1.4" includes="*.jar"/>
-        <fileset dir="resources/mysql-connector-j-8.3.0" includes="*.jar"/>
+        <fileset dir="resources/mysql-connector-j-8.3.0/mysql-connector-j-8.3.0/mysql-connector-j-8.3.0.jar" includes="*.jar"/>
     </path>
 
 </project>
