@@ -10,10 +10,14 @@
         <!-- Afficher le répertoire de travail actuel pour le débogage -->
         <echo message="Répertoire de travail courant : ${basedir}"/>
 
+        <!-- Supprimer le fichier classes s'il existe -->
+        <delete file="${classes}"/>
+        <echo message="Fichier classes supprimé s'il existait"/>
+
         <!-- Créer les répertoires build et build/classes si nécessaire -->
         <mkdir dir="${classes}"/>
         <echo message="Création du répertoire ${classes}"/>
-        
+
         <!-- Vérification explicite de l'existence du répertoire -->
         <available file="${classes}" message="Répertoire ${classes} existe !"/>
     </target>
@@ -53,4 +57,3 @@
     </path>
 
 </project>
-
