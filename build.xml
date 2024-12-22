@@ -4,9 +4,9 @@
     <!-- Définition de la variable build -->
     <property name="build" value="build"/>
 
-    <!-- Crée le répertoire build/classes si nécessaire -->
+    <!-- Crée les répertoires build/classes si nécessaire -->
     <target name="prepare">
-        <!-- Créer le répertoire build et build/classes si nécessaire -->
+        <!-- Créer les répertoires build et build/classes si nécessaire -->
         <mkdir dir="${build}/classes"/>
     </target>
 
