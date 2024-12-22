@@ -21,9 +21,8 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '11'
-        distribution: 'adoptopenjdk'  # ou 'adoptium' ou 'zulu', selon ce que vous préférez
+        distribution: 'adoptium'  # Mise à jour avec la bonne distribution
         architecture: x64
 
     - name: Build with Ant
       run: ant -f build.xml
-
