@@ -6,6 +6,7 @@
 
     <!-- Crée le répertoire build/classes si nécessaire -->
     <target name="prepare">
+        <!-- Créer le répertoire build et build/classes si nécessaire -->
         <mkdir dir="${build}/classes"/>
     </target>
 
@@ -43,4 +44,3 @@
     <!-- Compilation finale avec le classpath configuré -->
     <javac srcdir="src" destdir="${build}/classes" classpathref="classpath"/>
 </project>
-
